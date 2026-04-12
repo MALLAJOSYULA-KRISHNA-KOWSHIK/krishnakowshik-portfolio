@@ -5,12 +5,12 @@ import { scaleIn, slideLeft, staggerContainer } from "@/lib/motion";
 
 const tabs = ["EXPERIENCE", "EDUCATION", "CERTIFICATIONS"] as const;
 
-type TimelineItem = { title: string; subtitle: string; detail?: string; active?: boolean };
+type TimelineItem = { title: string; subtitle?: string; detail?: string; active?: boolean };
 
 const experience: TimelineItem[] = [
   { title: "Jr Full Stack Dev Intern", subtitle: "Clientura", detail: "Full stack development internship" },
   { title: "YouTube Content Creator", subtitle: "@koushiktales", detail: "2.5K+ subscribers", active: true },
-  { title: "Freelance Developer", subtitle: "Aqua Bites & EndureUp", detail: "Client project delivery" },
+  { title: "Freelance Developer", detail: "Client project delivery" },
 ];
 
 const education: TimelineItem[] = [
