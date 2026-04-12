@@ -1,4 +1,4 @@
-const CACHE_NAME = "kowshik-digital-world-cache-v1";
+const CACHE_NAME = "kowshik-digital-world-cache-v2";
 const ASSETS_TO_CACHE = [
   "/",
   "/index.html",
@@ -26,6 +26,19 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request).then((cachedResponse) => cachedResponse || caches.match("/")))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -37,8 +50,7 @@ self.addEventListener("fetch", (event) => {
           const responseClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
           return networkResponse;
-        })
-        .catch(() => caches.match("/"));
+        });
     })
   );
 });
