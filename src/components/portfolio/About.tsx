@@ -4,10 +4,10 @@ import SectionHeader from "./SectionHeader";
 import { scaleIn, slideLeft, staggerContainer } from "@/lib/motion";
 
 const stats = [
-  { value: 2500, label: "YouTube Subscribers", suffix: "+", format: "k" as const },
+  { value: 2500, label: "YouTube Community", suffix: "+", format: "k" as const },
   { value: 8.91, label: "B.Tech CGPA", suffix: "", decimals: 2, format: "number" as const },
-  { value: 4, label: "HackerRank C", suffix: "★", format: "number" as const },
-  { value: 5, label: "Projects Shipped", suffix: "+", format: "number" as const },
+  { value: 4, label: "HackerRank Stars", suffix: "★", format: "number" as const },
+  { value: 5, label: "AI Models Deployed", suffix: "+", format: "number" as const },
 ];
 
 const CountUp = ({ target, suffix, decimals = 0, format = "number" }: { target: number; suffix: string; decimals?: number; format?: "number" | "k" }) => {
@@ -48,8 +48,8 @@ const About = () => {
 
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <SectionHeader number="03" title="ABOUT" ext="md" />
-      <div className="grid md:grid-cols-5 gap-12">
+      <SectionHeader title="Professional Summary" />
+      <div className="grid md:grid-cols-5 gap-12 items-center">
         <motion.div
           variants={slideLeft}
           initial="hidden"
@@ -57,9 +57,8 @@ const About = () => {
           viewport={{ once: true, amount: 0.15 }}
           className="md:col-span-3"
         >
-          <p className="text-lg leading-relaxed text-foreground/90">
-            <span className="text-primary text-4xl font-mono font-bold float-left mr-3 mt-1 leading-none">A</span>
-            spiring Software Developer skilled in Full Stack Development and Generative AI, aiming to leverage AI-driven technologies and modern web frameworks to develop innovative and impactful applications. Currently pursuing B.Tech in CSE (Data Science) at MVGR College of Engineering, Vizianagaram with a CGPA of 8.91.
+          <p className="text-lg leading-relaxed text-muted-foreground font-sans">
+            AI/ML Engineer with a strong foundation in <span className="font-semibold text-foreground">Computer Vision</span>, <span className="font-semibold text-foreground">NLP</span>, and <span className="font-semibold text-foreground">Generative AI</span>. I specialize in bridging the gap between theoretical machine learning research and scalable production systems. Currently pursuing a B.Tech in Computer Science Engineering(Data science) at MVGRCE, Vizianagaram, I am passionate about architecting intelligent solutions that solve complex real-world problems.
           </p>
         </motion.div>
         <motion.div
@@ -73,14 +72,14 @@ const About = () => {
             <motion.div
               key={s.label}
               variants={scaleIn}
-              whileHover={{ y: -4, borderColor: "#00F5FF", boxShadow: "0 0 20px rgba(0,245,255,0.15)" }}
+              whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="border-t-2 border-primary bg-card p-4 rounded-sm"
+              className="bg-card border border-white/5 p-6 rounded-2xl flex flex-col justify-center items-center text-center shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-300"
             >
-              <div className="font-mono text-2xl font-bold text-primary">
+              <div className="font-sans text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-primary to-blue-400">
                 <CountUp target={s.value} suffix={s.suffix} decimals={s.decimals} format={s.format} />
               </div>
-              <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
+              <div className="text-xs font-medium text-muted-foreground mt-2 uppercase tracking-wide">{s.label}</div>
             </motion.div>
           ))}
         </motion.div>

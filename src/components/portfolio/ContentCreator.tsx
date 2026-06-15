@@ -47,11 +47,11 @@ const ContentCreator = () => {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <SectionHeader number="07" title="CONTENT_CREATOR" ext="yml" />
+    <section id="creator" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <SectionHeader title="Community Leadership" />
       <motion.div
         ref={ref}
-        className="grid md:grid-cols-2 gap-6"
+        className="grid md:grid-cols-2 gap-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
@@ -59,65 +59,62 @@ const ContentCreator = () => {
       >
         <motion.div
           variants={slideLeft}
-          className="bg-card border border-primary/10 rounded-sm overflow-hidden"
-          whileHover={prefersReducedMotion ? undefined : { y: -5, borderColor: "#FF0000", boxShadow: "0 0 30px rgba(255,0,0,0.12)" }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="bg-card border border-white/5 rounded-2xl overflow-hidden p-8 hover:-translate-y-1 hover:shadow-xl hover:border-red-500/30 transition-all duration-300 group"
         >
-          <div className="h-1 bg-[hsl(0,100%,50%)]" />
-          <div className="p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Youtube size={28} className="text-[hsl(0,100%,50%)]" />
-              <div>
-                <h3 className="font-mono text-foreground font-semibold">@koushiktales</h3>
-                <p className="font-mono text-xs text-muted-foreground">YouTube Channel</p>
-              </div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-12 w-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
+              <Youtube size={28} />
             </div>
-            <div className="font-mono text-3xl font-bold text-primary">
-              <CountUp target={2500} suffix="K+" />
+            <div>
+              <h3 className="font-sans text-xl font-bold text-foreground">@koushiktales</h3>
+              <p className="font-sans text-sm text-muted-foreground">Technical Evangelism</p>
             </div>
-            <p className="text-sm text-muted-foreground">Subscribers & growing community</p>
-            <a
-              href="https://youtube.com/@koushiktales"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block font-mono text-sm px-4 py-2 border border-[hsl(0,100%,50%)]/30 text-[hsl(0,100%,50%)] hover:bg-[hsl(0,100%,50%)]/10 transition-colors rounded-sm"
-            >
-              Visit Channel →
-            </a>
           </div>
+          <div className="font-sans text-5xl font-extrabold text-foreground mb-4">
+            <CountUp target={2500} suffix="K+" />
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+            Building a community of developers and data enthusiasts, sharing tutorials, code breakdowns, and AI/ML concepts.
+          </p>
+          <a
+            href="https://youtube.com/@koushiktales"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex font-sans text-sm font-medium px-6 py-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+          >
+            Visit Channel
+          </a>
         </motion.div>
 
         <motion.div
           variants={slideRight}
-          className="bg-card border border-primary/10 rounded-sm overflow-hidden"
-          whileHover={prefersReducedMotion ? undefined : { y: -5, borderColor: "#FFB800", boxShadow: "0 0 30px rgba(255,184,0,0.12)" }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
+          className="bg-card border border-white/5 rounded-2xl overflow-hidden p-8 hover:-translate-y-1 hover:shadow-xl hover:border-amber-500/30 transition-all duration-300 group"
         >
-          <div className="h-1 bg-amber" />
-          <div className="p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Users size={28} className="text-amber" />
-              <div>
-                <h3 className="font-mono text-foreground font-semibold">Community Roles</h3>
-                <p className="font-mono text-xs text-muted-foreground">Leadership & Ambassadorship</p>
-              </div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-12 w-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+              <Users size={28} />
             </div>
-            <motion.ul className="space-y-2">
-              {roles.map((r, index) => (
-                <motion.li
-                  key={r}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ delay: index * 0.07 }}
-                  className="font-mono text-sm text-foreground/80 flex items-center gap-2"
-                >
-                  <span className="text-amber text-xs">▸</span> {r}
-                </motion.li>
-              ))}
-            </motion.ul>
+            <div>
+              <h3 className="font-sans text-xl font-bold text-foreground">Ambassadorships</h3>
+              <p className="font-sans text-sm text-muted-foreground">Developer Relations</p>
+            </div>
           </div>
+          <motion.ul className="space-y-4">
+            {roles.map((r, index) => (
+              <motion.li
+                key={r}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ delay: index * 0.07 }}
+                className="font-sans text-[15px] font-medium text-foreground/80 flex items-center gap-3"
+              >
+                <span className="flex h-1.5 w-1.5 rounded-full bg-amber-500" />
+                {r}
+              </motion.li>
+            ))}
+          </motion.ul>
         </motion.div>
       </motion.div>
     </section>

@@ -1,72 +1,62 @@
-import { useState, useRef } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
-import { fadeUp, slideRight, staggerContainer } from "@/lib/motion";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const categories: Record<string, { name: string; xp: number }[]> = {
-  "--frontend": [
-    { name: "HTML", xp: 85 }, { name: "CSS", xp: 80 }, { name: "JavaScript", xp: 82 },
-    { name: "ReactJS", xp: 78 }, { name: "TypeScript", xp: 55 },
+  "Core ML": [
+    { name: "Computer Vision", xp: 90 }, { name: "Deep Learning", xp: 85 }, { name: "NLP", xp: 80 },
+    { name: "Predictive Modeling", xp: 82 }, { name: "Generative AI", xp: 75 }
   ],
-  "--backend": [
-    { name: "Python", xp: 88 }, { name: "Flask", xp: 70 }, { name: "FastAPI", xp: 68 },
-    { name: "C++", xp: 72 }, { name: "Gen AI", xp: 60 },
+  "Frameworks": [
+    { name: "PyTorch", xp: 80 }, { name: "TensorFlow", xp: 75 }, { name: "OpenCV", xp: 88 },
+    { name: "YOLOv8", xp: 92 }, { name: "Scikit-Learn", xp: 85 }, { name: "Hugging Face", xp: 78 }
   ],
-  "--database": [
-    { name: "MariaDB", xp: 70 }, { name: "MongoDB", xp: 55 },{ name: "PostgreSQL", xp: 60 }
+  "Cloud & MLOps": [
+    { name: "Model Deployment", xp: 80 }, { name: "Docker", xp: 75 }, { name: "FastAPI", xp: 85 },
+    { name: "Flask", xp: 82 }, { name: "Git", xp: 85 }
   ],
-  "--tools": [
-    { name: "Git", xp: 80 }, { name: "VS Code", xp: 85 }, { name: "Postman", xp: 75 },
-    { name: "Cursor", xp: 70 }, { name: "Power BI", xp: 50 }, { name: "Linux", xp: 68 },
-    { name: "Windows", xp: 85 }, { name: "Excel", xp: 65 },{ name: "Lovable", xp: 85 }
+  "Languages": [
+    { name: "Python", xp: 95 }, { name: "C++", xp: 75 }, { name: "SQL", xp: 85 },
+    { name: "TypeScript", xp: 70 }
   ],
 };
 
-const XPBar = ({ name, xp, delay }: { name: string; xp: number; delay: number }) => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-  const prefersReducedMotion = useReducedMotion();
-
+const SkillCard = ({ name, xp, delay }: { name: string; xp: number; delay: number }) => {
   return (
     <motion.div
-      ref={ref}
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
       transition={{ delay }}
-      className="flex items-center gap-4 font-mono text-sm py-2"
+      className="bg-card border border-white/5 rounded-2xl p-6 flex flex-col justify-between gap-4 hover:-translate-y-1 hover:glow-cyan-border transition-all duration-300 group"
     >
-      <span className="w-24 text-foreground/80 shrink-0">{name}</span>
-      <div className="relative flex-1 h-3 bg-muted rounded-sm overflow-hidden">
-        <motion.div
-          className="h-full bg-primary rounded-sm"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${xp}%` } : {}}
-          transition={{ duration: 1, ease: "easeOut", delay }}
-          viewport={{ once: true }}
-        />
-        {!prefersReducedMotion && (
-          <motion.div
-            className="absolute right-0 top-0 h-full w-3 rounded-full bg-white/40 blur-xl"
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay }}
-          />
-        )}
+      <div className="flex items-center justify-between">
+        <span className="font-sans font-medium text-foreground">{name}</span>
+        <span className="text-primary font-medium text-sm">{xp}%</span>
       </div>
-      <span className="w-10 text-right text-primary">{xp}</span>
+      <div className="relative h-2 w-full bg-muted rounded-full overflow-hidden">
+        <motion.div
+          className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-blue-400 rounded-full"
+          initial={{ width: 0 }}
+          whileInView={{ width: `${xp}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut", delay }}
+        />
+      </div>
     </motion.div>
   );
 };
 
 const Skills = () => {
-  const [tab, setTab] = useState("--frontend");
+  const [tab, setTab] = useState("Core ML");
   const prefersReducedMotion = useReducedMotion();
 
   return (
     <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <SectionHeader number="04" title="SKILLS" ext="json" />
-      <div className="flex flex-wrap gap-2 mb-8">
+      <SectionHeader title="Platform Capabilities" />
+      <div className="flex flex-wrap justify-center gap-2 mb-12">
         {Object.keys(categories).map((t) => (
           <motion.button
             key={t}
@@ -74,15 +64,16 @@ const Skills = () => {
             whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative overflow-hidden rounded-full px-4 py-2 text-sm font-mono transition-colors"
+            className="relative overflow-hidden rounded-full px-6 py-2.5 text-sm font-medium transition-colors"
           >
             {tab === t && (
               <motion.span
                 layoutId="skills-active-pill"
-                className="absolute inset-0 rounded-full bg-primary/10"
+                className="absolute inset-0 rounded-full bg-primary text-primary-foreground shadow-md"
+                style={{ zIndex: -1 }}
               />
             )}
-            <span className={`relative z-10 ${tab === t ? "text-primary" : "text-muted-foreground"}`}>
+            <span className={`relative z-10 ${tab === t ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>
               {t}
             </span>
           </motion.button>
@@ -95,10 +86,10 @@ const Skills = () => {
           initial="hidden"
           animate="visible"
           exit={{ opacity: 0 }}
-          className="max-w-2xl"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {categories[tab].map((s, i) => (
-            <XPBar key={`${tab}-${s.name}`} name={s.name} xp={s.xp} delay={i * 0.05} />
+            <SkillCard key={`${tab}-${s.name}`} name={s.name} xp={s.xp} delay={i * 0.05} />
           ))}
         </motion.div>
       </AnimatePresence>

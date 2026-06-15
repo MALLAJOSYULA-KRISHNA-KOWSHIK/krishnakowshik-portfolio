@@ -9,7 +9,7 @@ import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
 const Index = () => (
-  <div className="min-h-screen bg-background dot-grid">
+  <div className="min-h-screen bg-background mesh-bg">
     <Nav />
     <Hero />
     <About />
