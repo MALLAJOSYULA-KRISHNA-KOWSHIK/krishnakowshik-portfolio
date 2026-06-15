@@ -11,7 +11,7 @@ import Footer from "@/components/portfolio/Footer";
 const Index = () => (
   <div className="min-h-screen bg-background dot-grid overflow-hidden">
     <Nav />
-    <div className="transform md:-rotate-1 origin-center w-full transition-transform duration-300">
+    <div className="transform -rotate-1 scale-[1.02] sm:scale-100 origin-center w-full transition-transform duration-300">
       <Hero />
       <About />
       <Skills />
