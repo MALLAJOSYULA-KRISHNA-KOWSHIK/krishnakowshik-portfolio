@@ -1,8 +1,34 @@
 const Loader = () => (
-  <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-background">
-    <div className="flex flex-col items-center gap-4">
-      <div className="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary" />
-      <p className="font-sans text-sm text-muted-foreground animate-pulse">Loading workspace...</p>
+  <div className="site-loader">
+    <div className="loader-shell">
+      <div className="clouds">
+        <div className="cloud cloud1" />
+        <div className="cloud cloud2" />
+        <div className="cloud cloud3" />
+        <div className="cloud cloud4" />
+        <div className="cloud cloud5" />
+      </div>
+
+      <div className="loader">
+        <span>
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </span>
+        <div className="base">
+          <span />
+          <div className="face" />
+        </div>
+      </div>
+
+      <div className="longfazers">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
     </div>
   </div>
 );

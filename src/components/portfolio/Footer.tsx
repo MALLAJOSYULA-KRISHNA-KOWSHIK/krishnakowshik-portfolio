@@ -1,11 +1,11 @@
 const Footer = () => (
-  <footer className="border-t border-white/5 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 mt-12">
-    <span className="font-sans text-sm font-medium text-muted-foreground">© 2026 KRISHNA KOWSHIK. All rights reserved.</span>
+  <footer className="border-t border-primary/10 py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+    <span className="font-body text-sm text-muted-foreground">© 2026 Krishna Kowshik</span>
     <a
       href="#"
-      className="font-sans text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+      className="font-body text-sm font-medium text-primary hover:text-glow-cyan transition-colors"
     >
-      Return to top ↑
+      Return to Top ↑
     </a>
   </footer>
 );

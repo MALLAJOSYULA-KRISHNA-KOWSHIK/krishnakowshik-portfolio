@@ -9,16 +9,18 @@ import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
 const Index = () => (
-  <div className="min-h-screen bg-background mesh-bg">
+  <div className="min-h-screen bg-background dot-grid overflow-hidden">
     <Nav />
-    <Hero />
-    <About />
-    <Skills />
-    <Projects />
-    <Experience />
-    <ContentCreator />
-    <Contact />
-    <Footer />
+    <div className="transform -rotate-1 origin-center w-full">
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <ContentCreator />
+      <Contact />
+      <Footer />
+    </div>
   </div>
 );
 
