@@ -76,16 +76,10 @@
 
   html {
     scroll-behavior: smooth;
-    cursor: none;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    cursor: none;
-  }
-
-  a, button, [role="button"] {
-    cursor: none;
   }
 }
 

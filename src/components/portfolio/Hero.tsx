@@ -110,7 +110,7 @@ const Hero = () => {
             View Projects
           </motion.a>
           <motion.button
-            onClick={() => window.open("https://drive.google.com/file/d/19U82hj8tD9X7vsd0MBAkdcE_OTgF80Kr/view?usp=sharing", "_blank")}
+            onClick={() => window.open("https://drive.google.com/file/d/1JPVaNKgMnPYiXDJI-WLfO-Nrigk5_3Vt/view?usp=drive_link", "_blank")}
             whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
             transition={{ type: "spring", stiffness: 300, damping: 22 }}

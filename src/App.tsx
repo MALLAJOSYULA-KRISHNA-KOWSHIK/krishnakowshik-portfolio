@@ -38,7 +38,6 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <CustomCursor />
           <AnimatePresence mode="wait">
             {introVisible && (
               <motion.div
